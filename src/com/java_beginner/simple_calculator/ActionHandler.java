@@ -55,10 +55,30 @@ public class ActionHandler implements ActionListener {
 
         // =
         if (Constants.LABEL_EQ.equals(actionCommand)) {
+
             textFieldValue.setText(null);
+
+            String formulaText = textFieldFormula.getText();
+
+            // 空文字チェック
+            if (formulaText.isEmpty()) {
+                JLabel label = new JLabel(Constants.APP_SETTING_ERROR_MSG_NOT_INPUT);
+                label.setForeground(Color.RED);
+                JOptionPane.showMessageDialog(parentComponent, label);
+                return ;
+            }
+
+            // 入力チェック
+            if (!formulaText.matches("^[%()*+-/0-9]+$")) {
+                JLabel label = new JLabel(Constants.APP_SETTING_ERROR_MSG_UNNECESSARY);
+                label.setForeground(Color.RED);
+                JOptionPane.showMessageDialog(parentComponent, label);
+                return ;
+            }
+
             String value = Evaluation.getValueOf(textFieldFormula.getText());
             if (value.isEmpty()) {
-                JLabel label = new JLabel(Constants.APP_SETTING_ERROR_MSG);
+                JLabel label = new JLabel(Constants.APP_SETTING_ERROR_MSG_NO_RESULT);
                 label.setForeground(Color.RED);
                 JOptionPane.showMessageDialog(parentComponent, label);
             }

@@ -42,8 +42,15 @@ public class Constants {
     /** コピーライトMIME */
     public static final String APP_SETTING_COPYRIGHT_MIME = "text/html";
 
-    /** エラーメッセージ */
-    public static final String APP_SETTING_ERROR_MSG = "結果がありませんでした。";
+    /* エラーメッセージ */
+    /** エラーメッセージ: 結果がない場合 */
+    public static final String APP_SETTING_ERROR_MSG_NO_RESULT = "結果がありませんでした。";
+
+    /** エラーメッセージ: 未入力 */
+    public static final String APP_SETTING_ERROR_MSG_NOT_INPUT = "未入力です。";
+
+    /** エラーメッセージ: 余計な文字を含む */
+    public static final String APP_SETTING_ERROR_MSG_UNNECESSARY = "余計な文字があります。";
 
     /* 文字列 */
     /** 「null」 */
