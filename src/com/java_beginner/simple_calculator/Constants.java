@@ -8,6 +8,9 @@ package com.java_beginner.simple_calculator;
  */
 public class Constants {
 
+    /* このクラスはインスタンスを生成しない */
+    private Constants() {}
+
     /* アプリケーションの設定 */
     /** タイトル */
     public static final String APP_SETTING_TITLE = "簡易電卓(Swing版)";
