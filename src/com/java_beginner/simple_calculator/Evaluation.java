@@ -12,14 +12,20 @@ import javax.script.ScriptException;
  */
 public class Evaluation {
 
-    public static String getValueOf(String formula) {
+    ScriptEngine engine;
 
-        ScriptEngine engine = new ScriptEngineManager().getEngineByName(Constants.SCRIPTENGINE_SHORT_NAME);
+    public Evaluation() {
+        engine = new ScriptEngineManager().getEngineByName(Constants.SCRIPTENGINE_SHORT_NAME);
+    }
+
+    public String getValueOf(String formula) {
+
+        String value = Constants.STR_EMPTY;
         try {
             engine.eval(String.format(Constants.SCRIPTENGINE_FORMAT_FOR_EVALUATION, formula));
+            value = String.valueOf(engine.get(Constants.SCRIPTENGINE_VALUE));
         } catch (ScriptException e1) {
         }
-        String value = String.valueOf(engine.get("value"));
 
         return value.equals(Constants.STR_NULL) ? Constants.STR_EMPTY : value;
 

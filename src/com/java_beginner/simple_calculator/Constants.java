@@ -152,10 +152,18 @@ public class Constants {
             LABEL_BRACKET_RIGHT
             };
 
+    /* 正規表現 */
+    /** 式のパターン */
+    public static final String PATTERN_FORMULA = "^[%()*+-/0-9]+$";
+
     /* スクリプトエンジン用 */
     /** 簡略名 */
     public static final String SCRIPTENGINE_SHORT_NAME = "JavaScript";
 
     /** 評価用フォーマット */
     public static final String SCRIPTENGINE_FORMAT_FOR_EVALUATION = "var value = eval(\"%s\");";
+
+    /** 値取り出し用文字列 */
+    public static final String SCRIPTENGINE_VALUE = "value";
+
 }

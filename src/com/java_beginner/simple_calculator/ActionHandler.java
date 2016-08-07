@@ -26,6 +26,8 @@ public class ActionHandler implements ActionListener {
 
     private Component parentComponent;
 
+    Evaluation evaluation = new Evaluation();
+
     public ActionHandler(Component parentComponent, PanelOfTextFields panelDisplay, PanelOfButtons panelButtons) {
         super();
         this.parentComponent = parentComponent;
@@ -43,7 +45,7 @@ public class ActionHandler implements ActionListener {
 
         String actionCommand = e.getActionCommand();
 
-        // 0～9, +, -, *, /, %
+        // 0～9, +, -, *, /, %, (, )
         for (String label : Constants.OUTPUT_TARGET_LABELS) {
             if (label.equals(actionCommand)) {
                 String s = textFieldFormula.getText();
@@ -62,25 +64,19 @@ public class ActionHandler implements ActionListener {
 
             // 空文字チェック
             if (formulaText.isEmpty()) {
-                JLabel label = new JLabel(Constants.APP_SETTING_ERROR_MSG_NOT_INPUT);
-                label.setForeground(Color.RED);
-                JOptionPane.showMessageDialog(parentComponent, label);
+                showDialog(Constants.APP_SETTING_ERROR_MSG_NOT_INPUT);
                 return ;
             }
 
             // 入力チェック
-            if (!formulaText.matches("^[%()*+-/0-9]+$")) {
-                JLabel label = new JLabel(Constants.APP_SETTING_ERROR_MSG_UNNECESSARY);
-                label.setForeground(Color.RED);
-                JOptionPane.showMessageDialog(parentComponent, label);
+            if (!formulaText.matches(Constants.PATTERN_FORMULA)) {
+                showDialog(Constants.APP_SETTING_ERROR_MSG_UNNECESSARY);
                 return ;
             }
 
-            String value = Evaluation.getValueOf(textFieldFormula.getText());
+            String value = evaluation.getValueOf(textFieldFormula.getText());
             if (value.isEmpty()) {
-                JLabel label = new JLabel(Constants.APP_SETTING_ERROR_MSG_NO_RESULT);
-                label.setForeground(Color.RED);
-                JOptionPane.showMessageDialog(parentComponent, label);
+                showDialog(Constants.APP_SETTING_ERROR_MSG_NO_RESULT);
             }
             textFieldValue.setText(value);
 
@@ -91,6 +87,14 @@ public class ActionHandler implements ActionListener {
             textFieldFormula.setText(null);
             textFieldValue.setText(null);
         }
+
+    }
+
+    private void showDialog(String s) {
+
+        JLabel label = new JLabel(s);
+        label.setForeground(Color.RED);
+        JOptionPane.showMessageDialog(parentComponent, label);
 
     }
 
