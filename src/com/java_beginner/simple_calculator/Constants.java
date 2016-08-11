@@ -25,7 +25,7 @@ public class Constants {
     public static final int APP_SETTING_TEXTFIELDS_GRID_ROWS = 2;
 
     /** テキストフィールド用グリッド列 */
-    public static final int APP_SETTING_TEXTFIELDS_GRID_COLS = 2;
+    public static final int APP_SETTING_TEXTFIELDS_GRID_COLS = 1;
 
     /** 式入力のテキストフィールドの長さ */
     public static final int APP_SETTING_TEXTFIELD_FORMULA_LENGTH = 15;
