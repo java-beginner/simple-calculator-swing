@@ -7,13 +7,11 @@ import java.net.URL;
 
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
-import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkEvent.EventType;
-import javax.swing.event.HyperlinkListener;
 
 /**
- * 簡易電卓
- * コピーライトクラス
+ * 簡易電卓 コピーライトクラス
+ *
  * @author 「Javaを復習する初心者」
  * @version 1.0
  */
@@ -22,24 +20,18 @@ public class PanelOfCopyright extends JPanel {
     public PanelOfCopyright() {
         super();
 
-        JEditorPane jEditorPane = new JEditorPane(
-                Constants.APP_SETTING_COPYRIGHT_MIME,
-                Constants.APP_SETTING_COPYRIGHT_HTML
-                );
+        JEditorPane jEditorPane = new JEditorPane(Constants.APP_SETTING_COPYRIGHT_MIME,
+                Constants.APP_SETTING_COPYRIGHT_HTML);
         jEditorPane.setEditable(false);
         jEditorPane.setOpaque(false);
-        jEditorPane.addHyperlinkListener(new HyperlinkListener() {
-
-            @Override
-            public void hyperlinkUpdate(HyperlinkEvent e) {
-                if (e.getEventType() == EventType.ACTIVATED) {
-                    URL url = e.getURL();
-                    Desktop desktop = Desktop.getDesktop();
-                    try {
-                        desktop.browse(url.toURI());
-                    } catch (IOException e1) {
-                    } catch (URISyntaxException e1) {
-                    }
+        jEditorPane.addHyperlinkListener(e -> {
+            if (e.getEventType() == EventType.ACTIVATED) {
+                URL url = e.getURL();
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.browse(url.toURI());
+                } catch (IOException e1) {
+                } catch (URISyntaxException e1) {
                 }
             }
         });
